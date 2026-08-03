@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hashlayer-subnet"
+version = "1.0.0"
+description = "HashLayer Subnet - Decentralized BTC (SHA256d) mining hashrate on Bittensor"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [
+    {name = "HashLayer Team"}
+]
+keywords = ["bittensor", "validator", "miner", "mining", "blockchain", "hashlayer", "bitcoin"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+dependencies = [
+    # finney/test runtime spec 432+ requires bittensor>=10.5.0 (cyscale / ASI 2.x)
+    "bittensor==10.5.0",
+    "bittensor-wallet==4.1.0",
+    "python-dotenv>=0.21.0",
+    "redis>=5.0.0",
+    "httpx>=0.25.0",
+    "requests>=2.25.0",
+    "psutil>=5.9.0",
+    "tabulate~=0.9.0",
+    "pydantic>=2.0.0",
+    "backoff>=2.2.0",
+    "ratelimit>=2.2.0",
+    "cachetools>=5.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-mock>=3.10.0",
+    "pytest-cov>=4.1.0",
+    "pytest-asyncio>=0.21.0",
+    "ruff>=0.1.0",
+    "black>=23.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/hashlayer-labs/hashlayer"
+Repository = "https://github.com/hashlayer-labs/hashlayer.git"
+Issues = "https://github.com/hashlayer-labs/hashlayer/issues"
+
+[project.scripts]
+hashlayer-validator = "hashlayer.validator.validator:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["hashlayer*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.black]
+line-length = 100
+target-version = ["py312", "py313"]
