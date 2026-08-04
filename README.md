@@ -14,7 +14,7 @@ Bittensor is a decentralized platform that incentivizes production of best-in-cl
 It is possible to contribute as a **miner** or a **validator**.
 
 **Miners** contribute SHA256d (BTC) mining hashrate and earn rewards through two independent systems:
-1. **Mining Rewards (BTC)**: Earnings from actual mining, redistributed by the HashLayer platform to **miners only** (secondary distribution)
+1. **Mining Rewards (BTC)**: Upstream mining revenue is secondarily distributed to **miners** (by share) and the **platform** (residual / buyback). Validators do **not** receive BTC from this path.
 2. **Alpha tokens**: Subnet-specific tokens for Bittensor-registered miners, based on hashpower contribution and validator weights
 
 **Validators** evaluate miners and set on-chain weights (including the loyalty coefficient). Validators earn **Alpha / TAO via the Bittensor protocol only** — they do **not** receive BTC from secondary distribution.
@@ -41,12 +41,12 @@ It is possible to contribute as a **miner** or a **validator**.
 
 HashLayer separates BTC mining payouts from Bittensor Alpha emissions:
 
-## 1. Mining Rewards (BTC) — Miners only
-SHA256d mining revenue with **secondary distribution to miners**:
+## 1. Mining Rewards (BTC) — miners + platform (not validators)
+SHA256d mining revenue with **secondary distribution**:
 - **Mining Revenue**: BTC from contributing hashpower
 - **Platform Collection**: Upstream pool revenue is collected by the platform
-- **Secondary Distribution**: Net BTC is redistributed to **registered miners** by share contribution (default ~90% of net to miners; residual is platform / buyback — **not** paid to validators)
-- **Manual Withdrawal**: Miners log in to the HashLayer website, set a BTC withdrawal address, and submit claims
+- **Secondary Distribution**: Net BTC is split between **registered miners** (default ~90% of net, by share contribution) and the **platform** (residual, e.g. buyback). **Validators are not in this split.**
+- **Manual Withdrawal (miners)**: Miners log in to the HashLayer website, set a BTC withdrawal address, and submit claims
 - **Processing Time**: Typically 1-3 business days after a claim is submitted
 
 ## 2. Alpha Token Rewards (Bittensor)

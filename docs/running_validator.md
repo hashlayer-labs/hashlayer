@@ -253,7 +253,7 @@ Validators earn **Alpha / TAO through the Bittensor protocol only**.
 - Unstake Alpha to TAO using standard Bittensor wallet flows when you want liquidity
 
 ### BTC secondary distribution — not for validators
-HashLayer’s BTC secondary distribution pays **miners only** (by mining share contribution).  
+HashLayer’s BTC secondary distribution credits **miners** (by mining share) and the **platform** (residual / buyback).  
 Validators do **not** receive a BTC share, do **not** set a BTC withdrawal address for validation rewards, and have no BTC claim flow on the validator path.
 
 Miner BTC withdrawal is documented in [Running a miner](./running_miner.md).
