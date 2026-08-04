@@ -8,23 +8,23 @@ HashLayer miners earn from **two independent reward systems**, both designed to 
 
 ## Reward Systems
 
-### 1. Mining Rewards (BTC) - All Miners
+### 1. Mining Rewards (BTC) - Miners only
 
-Direct cryptocurrency earnings from actual SHA256d (BTC) mining with **secondary distribution**:
+Direct cryptocurrency earnings from actual SHA256d (BTC) mining with **secondary distribution to miners**:
 
 - **Mining Revenue**: Earn BTC from contributing hashpower
-- **Platform Collection**: All mining rewards are first collected by the platform
-- **Secondary Distribution**: Platform redistributes rewards to miners and validators based on contributions
-- **Manual Withdrawal Required**: Must login to HashLayer website to set your BTC withdrawal address and submit withdrawal requests
-- **Processing Time**: 1-3 business days for withdrawal processing
+- **Platform Collection**: Upstream pool revenue is collected by the platform
+- **Secondary Distribution**: Net BTC is redistributed to **registered miners** by share contribution (validators do **not** receive BTC)
+- **Manual Withdrawal Required**: Log in to the HashLayer website, set your BTC withdrawal address, and submit withdrawal requests
+- **Processing Time**: Typically 1-3 business days after a claim is submitted
 
 #### How It Works
 1. Connect your mining hardware to the HashLayer pool
 2. Your shares are recorded and validated
-3. Mining revenue (BTC) is collected by the platform from F2Pool
-4. Platform performs **secondary distribution** to miners and validators based on their contributions
-5. You must login to HashLayer website to set your BTC withdrawal address
-6. Submit withdrawal request to receive your earnings
+3. Mining revenue (BTC) is collected by the platform from the upstream BTC pool
+4. Platform redistributes BTC to **miners** by contribution (residual after the miner pool is platform / buyback — not paid to validators)
+5. Log in to the HashLayer website to set your BTC withdrawal address
+6. Submit a withdrawal request to receive your earnings
 7. Withdrawals are processed within 1-3 business days
 
 ---
@@ -203,7 +203,7 @@ btcli wallet balance \
 
 ### BTC Rewards (Manual Withdrawal - Secondary Distribution)
 
-**Important**: BTC mining rewards go through **secondary distribution**. The platform collects all mining revenue and redistributes it to miners and validators. You must manually set up your BTC withdrawal address and submit withdrawal requests.
+**Important**: BTC mining rewards go through **secondary distribution to miners only**. The platform collects upstream mining revenue and redistributes it to registered miners by contribution. Validators do **not** receive BTC. You must set a BTC withdrawal address and submit withdrawal requests on the HashLayer website.
 
 #### Step-by-Step Withdrawal Process
 
@@ -240,9 +240,9 @@ btcli wallet balance \
 - **First withdrawal**: May take longer for security review
 
 **Important Notes**:
-- Mining rewards are distributed by the platform (secondary distribution)
-- Both miners and validators must set withdrawal addresses on the website
-- Withdrawals are processed manually, not automatically
+- Mining BTC is distributed by the platform to **miners only** (secondary distribution)
+- Validators do **not** receive BTC and do not use this withdrawal flow
+- Withdrawals are processed manually after you submit a claim, not automatically
 - Keep your withdrawal address up to date
 - Save transaction records for your reference
 

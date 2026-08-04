@@ -14,10 +14,10 @@ Bittensor is a decentralized platform that incentivizes production of best-in-cl
 It is possible to contribute as a **miner** or a **validator**.
 
 **Miners** contribute SHA256d (BTC) mining hashrate and earn rewards through two independent systems:
-1. **Direct Mining Rewards**: BTC earnings from actual mining (distributed via HashLayer platform secondary distribution)
-2. **Alpha tokens**: Subnet-specific tokens for Bittensor-registered miners, representing additional value based on hashpower contribution
+1. **Mining Rewards (BTC)**: Earnings from actual mining, redistributed by the HashLayer platform to **miners only** (secondary distribution)
+2. **Alpha tokens**: Subnet-specific tokens for Bittensor-registered miners, based on hashpower contribution and validator weights
 
-**Validators** evaluate miners, ranking (weighting) them by the share-value they've produced over each period of time. This creates a pool where miners can earn immediate mining rewards while miners who are also Bittensor participants also accumulate alpha tokens representing additional value.
+**Validators** evaluate miners and set on-chain weights (including the loyalty coefficient). Validators earn **Alpha / TAO via the Bittensor protocol only** — they do **not** receive BTC from secondary distribution.
 
 **Related Bittensor Documentation**:
 - [Introduction to Bittensor](https://docs.learnbittensor.org/learn/introduction)
@@ -39,22 +39,20 @@ It is possible to contribute as a **miner** or a **validator**.
 
 # Reward System
 
-HashLayer operates a dual reward mechanism:
+HashLayer separates BTC mining payouts from Bittensor Alpha emissions:
 
-## 1. Mining Rewards (BTC)
-Direct cryptocurrency earnings from actual SHA256d mining with **secondary distribution**:
-- **Mining Revenue**: Earn BTC from contributing hashpower
-- **Platform Collection**: All mining rewards are first collected by the platform
-- **Secondary Distribution**: Platform redistributes rewards to miners and validators based on contributions
-- **Manual Withdrawal Required**: Both miners and validators must login to HashLayer website to set withdrawal addresses and submit withdrawal requests
-- **Processing Time**: 1-3 business days for withdrawal processing
+## 1. Mining Rewards (BTC) — Miners only
+SHA256d mining revenue with **secondary distribution to miners**:
+- **Mining Revenue**: BTC from contributing hashpower
+- **Platform Collection**: Upstream pool revenue is collected by the platform
+- **Secondary Distribution**: Net BTC is redistributed to **registered miners** by share contribution (default ~90% of net to miners; residual is platform / buyback — **not** paid to validators)
+- **Manual Withdrawal**: Miners log in to the HashLayer website, set a BTC withdrawal address, and submit claims
+- **Processing Time**: Typically 1-3 business days after a claim is submitted
 
-## 2. Alpha Token Rewards (Bittensor Participants)
-The HashLayer BTC subnet incentivizes miners with additional alpha token rewards:
-- **Value-Based Rewards**: Alpha tokens based on the hashpower value you provide
-- **Requires Registration**: Only available to miners registered on the HashLayer Bittensor subnet
-- **Subnet Stake**: Alpha tokens represent stake in the HashLayer subnet
-- **Convertible to TAO**: Can be unstaked to TAO (Bittensor's primary currency)
+## 2. Alpha Token Rewards (Bittensor)
+- **Miners (registered)**: Alpha from subnet emissions according to validator weights (`hashrate_score × loyalty C`, then normalized)
+- **Validators**: Alpha / TAO from the Bittensor validator emission path (stake / consensus) — **no BTC secondary-distribution share**
+- Alpha can be unstaked to TAO per Bittensor rules
 
 ---
 

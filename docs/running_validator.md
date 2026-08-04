@@ -245,52 +245,25 @@ btcli subnet metagraph \
 
 ## Rewards
 
-Validators earn two types of rewards:
+Validators earn **Alpha / TAO through the Bittensor protocol only**.
 
-### 1. Alpha / TAO Rewards (Bittensor Protocol - Automatic)
-- Automatically distributed to your hotkey
-- Based on your validator performance and stake
+### Alpha / TAO Rewards (Automatic)
+- Distributed by Bittensor according to validator stake and consensus performance
 - Check balance: `btcli wallet balance --wallet.name YOUR_WALLET`
+- Unstake Alpha to TAO using standard Bittensor wallet flows when you want liquidity
 
-### 2. BTC Mining Revenue Share (Manual Withdrawal - Secondary Distribution)
+### BTC secondary distribution — not for validators
+HashLayer’s BTC secondary distribution pays **miners only** (by mining share contribution).  
+Validators do **not** receive a BTC share, do **not** set a BTC withdrawal address for validation rewards, and have no BTC claim flow on the validator path.
 
-**Important**: BTC mining rewards go through **secondary distribution**. The platform collects all mining revenue from F2Pool and redistributes it to both miners and validators based on their contributions.
+Miner BTC withdrawal is documented in [Running a miner](./running_miner.md).
 
-#### Withdrawal Process for Validators
-
-1. **Login to HashLayer Website**
-   - Visit the HashLayer platform: https://hashlayer.online/
-   - Connect using your Bittensor coldkey wallet (use the same coldkey that corresponds to your validator hotkey)
-   - Ensure you're using the correct validator wallet
-
-2. **Set Withdrawal Address**
-   - Navigate to account settings or wallet management
-   - Add your BTC address (starts with `1`, `3`, or `bc1`)
-   - **Verify addresses carefully** to avoid loss of funds
-
-3. **View Your Balance**
-   - Check your accumulated BTC earnings from validation
-   - View distribution history
-   - Monitor pending withdrawals
-
-4. **Submit Withdrawal Request**
-   - Select BTC
-   - Enter withdrawal amount (minimum per `MIN_CLAIM_BTC` deployment config)
-   - Review withdrawal address and network fees
-   - Submit withdrawal request (creates a withdrawal ticket)
-   - Wait for processing: 1-3 business days
-
-**Important Notes**:
-- Mining rewards are collected by the platform and redistributed (secondary distribution)
-- **Both validators and miners** must set withdrawal addresses on the website
-- Withdrawals require manual submission, not automatic
-- Large withdrawals may require additional verification
-- First withdrawal may take longer for security review
-- Keep transaction records for your reference
+---
 
 ## Support
 
 - GitHub Issues: https://github.com/hashlayer-labs/hashlayer/issues
-- Bittensor Discord: HashLayer subnet channel
+- Documentation: https://github.com/hashlayer-labs/hashlayer/tree/main/docs
+- Bittensor Discord: https://discord.com/invite/bittensor
 
 Happy validating!
