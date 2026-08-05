@@ -1,6 +1,7 @@
 """Loyalty coefficient C for miner weight = hashrate_score × C.
 
-See docs/Loyalty_Coefficient_Mechanism.md:
+``hashrate_score`` here is the validator USD share score from pooled
+``pool_difficulty`` (not raw H/s). See docs/loyalty_coefficient.md:
 
     x = F / E7
     x >= 0:  C = 1 + (Cmax - 1) * (1 - exp(-x / a))

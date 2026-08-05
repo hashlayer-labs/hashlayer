@@ -8,9 +8,14 @@ effective_score = hashrate_score × C
 weights         = normalize(effective_scores)   # then submit
 ```
 
+In code and docs, **`hashrate_score` means the validator’s USD share score**
+derived from summed Stratum `pool_difficulty` (× BTC subsidy 3.125 × price /
+network difficulty) — **not** raw H/s. Zero share score still yields zero weight,
+even if C is high.
+
 This does **not** change the Bittensor runtime. It only changes the weight vector
-validators submit. Hashrate remains the primary signal: **zero hashrate still
-yields zero weight**, even if C is high.
+validators submit. Loyalty does **not** grant validators any BTC; it only
+reweights miner Alpha emissions.
 
 ## Behaviour summary
 

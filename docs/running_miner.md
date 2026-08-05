@@ -2,7 +2,7 @@
 
 This guide will walk you through setting up and running a HashLayer miner on the Bittensor network.
 
-HashLayer enables SHA256d miners (BTC) to contribute hashpower to a collective mining pool. All miners direct their hashpower to a single subnet pool, where validators evaluate and rank miners based on the share value they generate.
+HashLayer enables SHA256d miners (BTC) to contribute hashpower to a collective mining pool. All miners direct their hashpower to a single subnet pool, where validators evaluate and rank miners based on share work (`pool_difficulty` → USD score × loyalty C).
 
 HashLayer miners earn from **two independent reward systems**, both designed to fairly and transparently compensate you for your computational contributions.
 
