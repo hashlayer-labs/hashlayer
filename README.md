@@ -154,7 +154,7 @@ Use your **48-character hotkey** as the miner username to connect to the mining 
 - Username: `5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY` (your full hotkey)
 - Password: `x`
 
-Alternatively, use the `{btc_address}.{hotkey}` worker format if your deployment requires a BTC payout address in the worker name.
+Multi-rig: use `hotkey.<rig_id>` (e.g. `5GrwvaEF….rig01`). BTC withdrawal address is registered separately in the web UI / API — not in the worker name.
 
 ### 4. Start Mining
 
