@@ -22,7 +22,7 @@ class RedisConfig:
         self.redis_url = os.getenv("REDIS_URL", "redis://localhost:6379/0")
         self.session_prefix = "session:"
         self.nonce_prefix = "nonce:"
-        self.hotkeys_prefix = "hotkeys:"  # coldkey -> hotkeys 缓存
+        self.hotkeys_prefix = "hotkeys:"  # coldkey -> hotkeys cache
         self.default_ttl = 86400  # 24 hours for sessions
         self.nonce_ttl = 300  # 5 minutes for nonces
 
@@ -374,16 +374,16 @@ class RedisClient:
             return False
 
     # ============================
-    # Hotkeys 缓存方法 (coldkey -> hotkeys)
+    # Hotkeys cache helpers (coldkey -> hotkeys)
     # ============================
 
     def set_hotkeys(self, coldkey: str, hotkeys: list) -> bool:
         """
-        缓存 coldkey 对应的 hotkeys 列表（永久缓存，由定时任务管理更新）
+        Cache the hotkeys list for a coldkey (no TTL; refreshed by a scheduled job).
 
         Args:
-            coldkey: 冷钱包地址
-            hotkeys: hotkey 列表
+            coldkey: Coldkey address
+            hotkeys: List of hotkeys
 
         Returns:
             True if successful
@@ -408,13 +408,13 @@ class RedisClient:
 
     def get_hotkeys(self, coldkey: str) -> Optional[list]:
         """
-        获取缓存的 hotkeys 列表
+        Get the cached hotkeys list for a coldkey.
 
         Args:
-            coldkey: 冷钱包地址
+            coldkey: Coldkey address
 
         Returns:
-            hotkeys 列表，未找到返回 None
+            Hotkeys list, or None if not found
         """
         if not self.is_available:
             return None
@@ -439,10 +439,10 @@ class RedisClient:
 
     def get_all_coldkeys(self) -> list:
         """
-        获取所有已缓存的 coldkey 列表（用于定时任务更新）
+        List all cached coldkeys (for scheduled refresh jobs).
 
         Returns:
-            coldkey 列表
+            List of coldkeys
         """
         if not self.is_available:
             return []
@@ -451,7 +451,7 @@ class RedisClient:
             pattern = f"{self.config.hotkeys_prefix}*"
             keys = self._client.keys(pattern)
 
-            # 提取 coldkey（去掉前缀）
+            # Strip the key prefix to recover the coldkey
             prefix_len = len(self.config.hotkeys_prefix)
             coldkeys = [key[prefix_len:] for key in keys]
 
