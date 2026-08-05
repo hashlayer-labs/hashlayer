@@ -2,15 +2,16 @@
 
 This guide will walk you through setting up and running a HashLayer validator on the Bittensor network.
 
-HashLayer enables SHA256d miners (BTC) to contribute hashpower to a collective mining pool. All miners direct their hashpower to a single subnet pool, where validators evaluate and rank miners based on the share value they generate.
+HashLayer enables SHA256d miners (BTC) to contribute hashpower to a collective mining pool. All miners direct their hashpower to a single subnet pool, where validators evaluate and rank miners based on the **share work** they contribute (Stratum `pool_difficulty` summed over the evaluation window).
 
-Validators are rewarded in HashLayer's subnet-specific (alpha) token on the Bittensor blockchain, which represents *stake* in the subnet. This alpha stake can be exited from the subnet by unstaking it to TAO (Bittensor's primary currency).
+Validators are rewarded in HashLayer's subnet-specific (alpha) token on the Bittensor blockchain, which represents *stake* in the subnet. This alpha stake can be exited from the subnet by unstaking it to TAO (Bittensor's primary currency). Validators do **not** receive BTC from secondary distribution.
 
-**Share value** is the difficulty at which the miner solved a blockhash. The higher the difficulty solved, the more incentive a miner gets during *emissions*, the process by which Bittensor periodically distributes tokens to participants based on the Yuma Consensus algorithm. In general, the higher the hashpower, the higher the share value submitted.
+**How share work becomes a score (summary):** for each registered miner hotkey, the validator asks the subnet proxy for timerange metrics, converts summed `pool_difficulty` into an estimated USD share value using Bitcoin network difficulty, the current BTC block subsidy (`3.125`), and BTC price, then applies the loyalty coefficient **C** before normalizing weights for `set_weights`.
 
 See also:
 
 - [Introduction to HashLayer](../README.md)
+- [Loyalty Coefficient](./loyalty_coefficient.md)
 - [Introduction to Bittensor](https://docs.learnbittensor.org/learn/introduction)
 - [Yuma Consensus](https://docs.learnbittensor.org/yuma-consensus/)
 - [Emissions](https://docs.learnbittensor.org/emissions/)
@@ -163,11 +164,29 @@ LOGGING_LEVEL=info
 
 ## Validator Evaluation Process
 
-1. Validators fetch miner statistics from the subnet proxy every evaluation interval
-2. They calculate share values based on miner contributions (BTC SHA256d mining)
-3. **Loyalty coefficient C** is applied: `effective_score = hashrate_score × C` (see [Loyalty Coefficient](./loyalty_coefficient.md))
-4. Weights are set every `tempo` blocks (every epoch) from those effective scores (normalized)
-5. All validators use the same proxy endpoint (and the same loyalty config/flows) for consistent evaluation
+All honest validators follow the **same** pipeline (same proxy APIs, same loyalty config/flows):
+
+```text
+Miner shares (Stratum) → subnet proxy / ClickHouse
+        ↓
+GET timerange metrics (sum pool_difficulty per hotkey / hotkey.*)
+        ↓
+USD score = (Σ pool_diff / BTC_net_difficulty) × 3.125 × BTC_price
+        ↓
+effective_score = USD_score × loyalty C     (per miner coldkey)
+        ↓
+normalize → set_weights on chain
+        ↓
+residual weight (if any) → burn_uid (subnet owner)
+```
+
+1. **Fetch metrics** from the subnet proxy every evaluation interval (`eval_interval`), for every metagraph hotkey. Workers named `hotkey` or `hotkey.<rig>` are aggregated to the same miner.
+2. **Score in USD** using Bitcoin network difficulty, block subsidy **3.125 BTC**, and live BTC price (CoinGecko; fallback price if the API fails).
+3. **Apply loyalty coefficient C**: `effective_score = hashrate_score × C` (see [Loyalty Coefficient](./loyalty_coefficient.md)). Config and F/E7 flows come from the proxy so every validator agrees. If config/flows cannot be fetched, that round skips ×C.
+4. **Set weights** each epoch (`tempo` blocks) from those effective scores. Excess budget relative to miner USD scores is burned to the subnet owner hotkey (`burn_uid`).
+5. **Consensus**: Yuma Consensus uses the submitted weight vectors; miners earn Alpha from subnet emissions according to consensus weights. Validators earn Alpha/TAO from the validator emission path only — **not** from BTC secondary distribution.
+
+This behaviour is identical in the public package (`hashlayer-labs`) and the monorepo validator under `hash/hashlayer/validator`.
 
 ## Managing Your Validator
 
