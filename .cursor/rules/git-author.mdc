@@ -1,0 +1,14 @@
+---
+description: hashlayer-labs commits must use pei76 author identity only
+alwaysApply: true
+---
+
+# hashlayer-labs git author
+
+When committing or pushing in **`hashlayer-labs`**:
+
+- **Always** use author `pei76 <jiaqipei76@gmail.com>`.
+- **Never** use `peijiaqi`, `peijiaq`, or `1278017494@qq.com` as author/committer.
+- This repo already has `git config --local user.name/email` set to pei76; do not override with global peijiaqi identity.
+- Before `git commit`, verify with `git config --local --get user.name` and `user.email` if unsure.
+- If a commit was created with the wrong author, fix with rewrite + `git push --force-with-lease` only when the user explicitly asks.
