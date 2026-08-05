@@ -136,7 +136,11 @@ Use your **full 48-character hotkey** as the miner username to connect to the Ha
 - **Worker Name**: `5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY` (your full hotkey)
 - **Password**: `x`
 
-Some deployments use `{btc_address}.{hotkey}` as the worker name when a BTC payout address is required in the Stratum username.
+Supported worker formats (scoring + BTC secondary distribution):
+- `hotkey` — single rig
+- `hotkey.<rig_id>` — multi-rig, e.g. `5GrwvaEF….mrr01`
+
+BTC payout address is registered in the web UI / rewards API — not in the Stratum username.
 
 #### Example Configuration
 
@@ -145,7 +149,7 @@ Some deployments use `{btc_address}.{hotkey}` as the worker name when a BTC payo
 2. Navigate to pool configuration
 3. Enter the pool details:
    - URL: `stratum+tcp://stratum.hashlayer.ai:3331`
-   - Worker: Your full 48-character hotkey (or `{btc_address}.{hotkey}`)
+   - Worker: Your full 48-character hotkey (or `hotkey.<rig_id>`)
    - Password: `x`
 
 **For Mining Software** (cgminer, bfgminer, etc.):
