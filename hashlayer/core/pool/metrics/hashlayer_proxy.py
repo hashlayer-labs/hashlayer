@@ -8,7 +8,8 @@ from hashlayer.core.pool.proxy.pool import ProxyPool
 
 from .base import BaseMetrics
 
-# Current BTC subsidy per block (post-2024 halving). Same as TaoHash BLOCK_REWARDS["btc"].
+# Current BTC subsidy per block (post-2024 halving).
+# Same as TaoHash BLOCK_REWARDS["btc"].
 # Scales share work → estimated BTC → USD for weight vs alpha-budget burn logic.
 BTC_BLOCK_REWARD = 3.125
 
