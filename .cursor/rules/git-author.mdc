@@ -9,6 +9,7 @@ When committing or pushing in **`hashlayer-labs`**:
 
 - **Always** use author `pei76 <jiaqipei76@gmail.com>`.
 - **Never** use `peijiaqi`, `peijiaq`, or `1278017494@qq.com` as author/committer.
-- This repo already has `git config --local user.name/email` set to pei76; do not override with global peijiaqi identity.
-- Before `git commit`, verify with `git config --local --get user.name` and `user.email` if unsure.
-- If a commit was created with the wrong author, fix with rewrite + `git push --force-with-lease` only when the user explicitly asks.
+- Repo uses `.githooks/` (`core.hooksPath=.githooks`): wrong author is rejected; Cursor `Co-authored-by` is stripped.
+- After clone, ensure: `git config --local core.hooksPath .githooks` and pei76 name/email (or run once after clone).
+- Do not add `Co-authored-by: Cursor` to commit messages.
+- Sync from mono must also commit as pei76 (see hashlayer `.github/workflows/sync-opensource.yml`).

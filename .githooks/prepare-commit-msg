@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Strip Cursor / bot Co-authored-by trailers so they never become contributors.
+set -euo pipefail
+msg_file="$1"
+tmp="$(mktemp)"
+# Drop Co-authored-by lines for Cursor / cursoragent
+grep -v -E '^Co-authored-by:[[:space:]]*(Cursor|cursoragent).*' "$msg_file" > "$tmp" || true
+mv "$tmp" "$msg_file"
