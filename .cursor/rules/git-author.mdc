@@ -1,5 +1,5 @@
 ---
-description: hashlayer-labs commits must use pei76 author identity only
+description: hashlayer-labs commits rotate among 3 public identities; never peijiaqi
 alwaysApply: true
 ---
 
@@ -7,9 +7,9 @@ alwaysApply: true
 
 When committing or pushing in **`hashlayer-labs`**:
 
-- **Always** use author `pei76 <jiaqipei76@gmail.com>`.
-- **Never** use `peijiaqi`, `peijiaq`, or `1278017494@qq.com` as author/committer.
-- Repo uses `.githooks/` (`core.hooksPath=.githooks`): wrong author is rejected; Cursor `Co-authored-by` is stripped.
-- After clone, ensure: `git config --local core.hooksPath .githooks` and pei76 name/email (or run once after clone).
+- Use **one of** the identities in `.githooks/allowed-authors` (random rotation is fine; anonymous emails OK).
+- **Never** use `peijiaqi`, `peijiaq`, `1278017494@qq.com`, or `jiaqipei76@gmail.com`.
+- After clone: `git config --local core.hooksPath .githooks`
+- Pick an allowed author (or run `.githooks/pick-author.sh`) before commit.
 - Do not add `Co-authored-by: Cursor` to commit messages.
-- Sync from mono must also commit as pei76 (see hashlayer `.github/workflows/sync-opensource.yml`).
+- Mono sync workflow (`.github/workflows/sync-opensource.yml`) must use the same allowlist.
