@@ -132,8 +132,7 @@ class WeightsMixin:
             )
         else:
             logging.info(
-                "Loyalty flows meta: f_source=local/neutral "
-                "(no proxy flows payload)"
+                "Loyalty flows meta: f_source=local/neutral (no proxy flows payload)"
             )
 
         n = len(samples)
