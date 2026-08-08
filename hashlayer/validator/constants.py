@@ -1,5 +1,6 @@
 """Shared constants for the HashLayer validator package."""
 
+# sync-check: opensource probe ✓
 # Default subnet uid used when the NETUID env var is not set.
 # Production / public netuid will be announced separately — always set NETUID
 # explicitly in .env for real deployments.
