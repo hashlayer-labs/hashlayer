@@ -36,3 +36,7 @@ miner_data/
 
 # OS
 Thumbs.db
+
+# Local maintainer tooling — do not publish
+.cursor/
+.githooks/
